@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RGMagpie'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'RGMagpie is an asynchronous image processing library.'
   s.description      = <<-DESC
 RGMagpie is a simple tool for processing asynchronous image
@@ -20,5 +20,5 @@ RGMagpie is a simple tool for processing asynchronous image
   s.ios.deployment_target = '14.0'
   s.source_files = 'RGMagpie/Classes/**/*'
   s.frameworks = 'UIKit'
-  s.swift_versions = '5.0'
+  s.swift_versions = '5.4'
 end

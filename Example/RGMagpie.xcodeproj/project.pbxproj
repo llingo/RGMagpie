@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		325942AE0571056B0E859F8C /* Pods_RGMagpie_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A16942EB25D7160924A067 /* Pods_RGMagpie_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* SampleViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		7595DEB5B724A92FAE8C0649 /* Pods_RGMagpie_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C78C290D50DE9C0976844A /* Pods_RGMagpie_Example.framework */; };
 		B07889E628D095C800B13CAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B07889E528D095C800B13CAE /* Main.storyboard */; };
+		B07889F228D0A0CB00B13CAE /* SampleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07889F128D0A0CB00B13CAE /* SampleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +36,7 @@
 		607FACD01AFB9204008FA782 /* RGMagpie_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RGMagpie_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* RGMagpie_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RGMagpie_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +45,7 @@
 		86A16942EB25D7160924A067 /* Pods_RGMagpie_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RGMagpie_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EBBC525E1431D5FEA304B58 /* Pods-RGMagpie_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RGMagpie_Example.debug.xcconfig"; path = "Target Support Files/Pods-RGMagpie_Example/Pods-RGMagpie_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B07889E528D095C800B13CAE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B07889F128D0A0CB00B13CAE /* SampleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleTableViewCell.swift; sourceTree = "<group>"; };
 		C038FE74E1630231D2178E12 /* RGMagpie.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RGMagpie.podspec; path = ../RGMagpie.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C8C78C290D50DE9C0976844A /* Pods_RGMagpie_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RGMagpie_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9F6AF031095B2E34856CFF6 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -150,7 +152,8 @@
 			isa = PBXGroup;
 			children = (
 				B07889E428D0956F00B13CAE /* Application */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				B07889F128D0A0CB00B13CAE /* SampleTableViewCell.swift */,
+				607FACD71AFB9204008FA782 /* SampleViewController.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -354,7 +357,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* SampleViewController.swift in Sources */,
+				B07889F228D0A0CB00B13CAE /* SampleTableViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

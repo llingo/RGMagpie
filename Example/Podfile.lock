@@ -1,0 +1,16 @@
+PODS:
+  - RGMagpie (0.1.0)
+
+DEPENDENCIES:
+  - RGMagpie (from `../`)
+
+EXTERNAL SOURCES:
+  RGMagpie:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RGMagpie: 660d0a80c66394cb4b93dd675db05e51c791e631
+
+PODFILE CHECKSUM: 0c7b2fa5f0189824487559b89c16a81f83436c02
+
+COCOAPODS: 1.11.3

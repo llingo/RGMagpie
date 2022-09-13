@@ -9,34 +9,16 @@
 Pod::Spec.new do |s|
   s.name             = 'RGMagpie'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of RGMagpie.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
+  s.summary          = 'RGMagpie is an asynchronous image processing library.'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+RGMagpie is a simple tool for processing asynchronous image
                        DESC
-
   s.homepage         = 'https://github.com/llingo/RGMagpie'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'llingo' => 'llingo@kakao.com' }
   s.source           = { :git => 'https://github.com/llingo/RGMagpie.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '10.0'
-
+  s.ios.deployment_target = '14.0'
   s.source_files = 'RGMagpie/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'RGMagpie' => ['RGMagpie/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'UIKit'
+  s.swift_versions = '5.0'
 end

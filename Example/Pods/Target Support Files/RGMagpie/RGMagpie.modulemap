@@ -1,0 +1,6 @@
+framework module RGMagpie {
+  umbrella header "RGMagpie-umbrella.h"
+
+  export *
+  module * { export * }
+}

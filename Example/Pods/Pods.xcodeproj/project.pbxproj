@@ -14,6 +14,8 @@
 		9C54975F25397CC0EA37A5B136DA3C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		AF2FEC06E7EA4BEBFDB8067CB1CE3AEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		B07889E828D098A100B13CAE /* RGMagpieError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07889E728D098A100B13CAE /* RGMagpieError.swift */; };
+		B07889EA28D098F900B13CAE /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07889E928D098F900B13CAE /* ImageDownloader.swift */; };
+		B07889EC28D0993200B13CAE /* ImageDownloadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07889EB28D0993200B13CAE /* ImageDownloadTask.swift */; };
 		CD8E3B24F326B658F82BC8DC87EC93CE /* RGMagpie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11C838127F94A3CAEB4F84CFD003242 /* RGMagpie.swift */; };
 		F728850CACFDCAD3F57804527C598C2E /* Pods-RGMagpie_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F317FD986A7335FF84F2DCA66A4AA140 /* Pods-RGMagpie_Tests-dummy.m */; };
 		FC73BFC690527B8202398E2F228D204F /* Pods-RGMagpie_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AFCAF0D0F16FEF8FDB9C90034FF992D /* Pods-RGMagpie_Example-dummy.m */; };
@@ -58,6 +60,8 @@
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AAA0A2817BC2142CCA53272F15CAF7A7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B07889E728D098A100B13CAE /* RGMagpieError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RGMagpieError.swift; path = RGMagpie/Classes/RGMagpieError.swift; sourceTree = "<group>"; };
+		B07889E928D098F900B13CAE /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = RGMagpie/Classes/Network/ImageDownloader.swift; sourceTree = "<group>"; };
+		B07889EB28D0993200B13CAE /* ImageDownloadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageDownloadTask.swift; path = RGMagpie/Classes/Network/ImageDownloadTask.swift; sourceTree = "<group>"; };
 		B5E8617407D0A55D7233170DD545D119 /* RGMagpie.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = RGMagpie.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B8E166DB1E8CFD4E995FB8B75AD81CEA /* RGMagpie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RGMagpie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE842B277DE3CFFD5E1A4F84099A3169 /* Pods_RGMagpie_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RGMagpie_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				F11C838127F94A3CAEB4F84CFD003242 /* RGMagpie.swift */,
+				B07889E928D098F900B13CAE /* ImageDownloader.swift */,
+				B07889EB28D0993200B13CAE /* ImageDownloadTask.swift */,
 				B07889E728D098A100B13CAE /* RGMagpieError.swift */,
 				8598138D219A78A44326005E693B683C /* Pod */,
 				F1EF3075438BC681918D4C980F3E0F16 /* Support Files */,
@@ -393,6 +399,8 @@
 			files = (
 				CD8E3B24F326B658F82BC8DC87EC93CE /* RGMagpie.swift in Sources */,
 				B07889E828D098A100B13CAE /* RGMagpieError.swift in Sources */,
+				B07889EC28D0993200B13CAE /* ImageDownloadTask.swift in Sources */,
+				B07889EA28D098F900B13CAE /* ImageDownloader.swift in Sources */,
 				71DBB7907C514756FEEB47A434AE8848 /* RGMagpie-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

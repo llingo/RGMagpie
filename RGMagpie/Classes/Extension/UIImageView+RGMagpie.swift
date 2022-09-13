@@ -49,11 +49,12 @@ extension RGMagpie where Base: UIImageView {
       case .failure(let error):
         completion?(.failure(error))
       }
+
+      DispatchQueue.main.async { [weak view = base as UIImageView] in
+        view?.image = placeholder
+      }
     }
 
-    DispatchQueue.main.async { [weak view = base as UIImageView] in
-      view?.image = placeholder
-    }
     mutatingSelf.imageTask = task
     return task
   }

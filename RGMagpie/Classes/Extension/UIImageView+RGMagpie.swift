@@ -34,10 +34,16 @@ extension RGMagpie where Base: UIImageView {
       return nil
     }
 
+    if let cachedImage = ImageCache.default.retrieve(forKey: url) {
+      base.image = cachedImage
+      return nil
+    }
+
     let task = ImageDownloader.default.download(with: url) { result in
       switch result {
       case .success(let data):
         if let image = UIImage(data: data) {
+          ImageCache.default.store(image, forKey: url)
           DispatchQueue.main.async { [weak view = base as UIImageView] in
             view?.image = image
             completion?(.success(image))

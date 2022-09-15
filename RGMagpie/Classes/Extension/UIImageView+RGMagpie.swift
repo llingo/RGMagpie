@@ -15,6 +15,7 @@ extension RGMagpie where Base: UIImageView {
     set { objc_setAssociatedObject(base, &imageTaskKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
   }
 
+  @available(iOS, deprecated, message: "RGMagpie 0.5.0에서 Deprecated될 예정입니다.")
   @discardableResult
   public func setImage(
     with urlString: String,

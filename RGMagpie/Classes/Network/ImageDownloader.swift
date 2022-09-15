@@ -25,6 +25,7 @@ final class ImageDownloader {
     )
   }
 
+  @available(iOS, deprecated, message: "RGMagpie 0.5.0에서 Deprecated될 예정입니다.")
   func download(
     with url: URL,
     completion: @escaping (Result<Data, RGMagpieError>) -> Void

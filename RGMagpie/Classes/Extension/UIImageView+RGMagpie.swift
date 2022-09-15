@@ -34,8 +34,8 @@ extension RGMagpie where Base: UIImageView {
       return nil
     }
 
-    if let cachedImage = ImageCache.default.retrieve(forKey: url) {
-      base.image = cachedImage
+    if let cachedImageData = ImageCache.default.retrieve(forKey: url) {
+      base.image = UIImage(data: cachedImageData)
       return nil
     }
 
@@ -43,7 +43,7 @@ extension RGMagpie where Base: UIImageView {
       switch result {
       case .success(let data):
         if let image = UIImage(data: data) {
-          ImageCache.default.store(image, forKey: url)
+          ImageCache.default.store(data, forKey: url)
           DispatchQueue.main.async { [weak view = base as UIImageView] in
             view?.image = image
             completion?(.success(image))

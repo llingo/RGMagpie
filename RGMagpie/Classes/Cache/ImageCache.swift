@@ -5,7 +5,7 @@
 //  Created by Ringo on 2022/09/14.
 //
 
-import UIKit
+import Foundation
 
 final class ImageCache {
   static let `default` = ImageCache(name: "default")
@@ -27,21 +27,19 @@ final class ImageCache {
     self.init(memoryStorage: memoryStorage, diskStorage: diskStorage)
   }
 
-  func store(_ image: UIImage, forKey imageURL: URL) {
-    if let imageData = image.jpegData(compressionQuality: 0.5) {
-      memoryStorage.setObject(imageData, forKey: imageURL)
-      diskStorage.setObject(imageData, forKey: imageURL)
-    }
+  func store(_ imageData: Data, forKey imageURL: URL) {
+    memoryStorage.setObject(imageData, forKey: imageURL)
+    diskStorage.setObject(imageData, forKey: imageURL)
   }
 
-  func retrieve(forKey imageURL: URL) -> UIImage? {
+  func retrieve(forKey imageURL: URL) -> Data? {
     if let memoryData = memoryStorage.object(forKey: imageURL) {
-      return UIImage(data: memoryData)
+      return memoryData
     }
 
     if let diskData = diskStorage.object(forKey: imageURL) {
       memoryStorage.setObject(diskData, forKey: imageURL)
-      return UIImage(data: diskData)
+      return diskData
     }
     return nil
   }

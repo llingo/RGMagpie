@@ -25,12 +25,11 @@ final class ImageDownloader {
     )
   }
 
-  @available(iOS, deprecated, message: "RGMagpie 0.5.0에서 Deprecated될 예정입니다.")
-  func download(
-    with url: URL,
-    completion: @escaping (Result<Data, RGMagpieError>) -> Void
+  private func download(
+    with request: URLRequest,
+    completion: @escaping (Result<ImageItem, RGMagpieError>) -> Void
   ) -> ImageDownloadTask {
-    let task = session.dataTask(with: url) { data, response, error in
+    let task = session.dataTask(with: request) { data, response, error in
       guard error == nil, let data = data else {
         completion(.failure(.errorIsOccurred(error.debugDescription)))
         return
@@ -41,7 +40,12 @@ final class ImageDownloader {
       }
 
       switch response.statusCode {
-      case 200..<300: completion(.success(data))
+      case 200..<300:
+        let etag = response.allHeaderFields["Etag"] as? String
+        let item = ImageItem(imageData: data, etag: etag)
+        completion(.success(item))
+
+      case 304: completion(.failure(.notModifiedError))
       case 400: completion(.failure(.badRequestError))
       case 401: completion(.failure(.unAuthorizedError))
       case 404: completion(.failure(.notFoundError))
@@ -50,7 +54,22 @@ final class ImageDownloader {
       default: completion(.failure(.unknownError))
       }
     }
+
     task.resume()
     return task
+  }
+
+  func downloadImage(
+    with url: URL,
+    etag: String? = nil,
+    completion: @escaping (Result<ImageItem, RGMagpieError>) -> Void
+  ) -> ImageDownloadTask {
+    var request = URLRequest(url: url)
+
+    if let etag = etag {
+      request.addValue(etag, forHTTPHeaderField: "If-None-Match")
+    }
+
+    return download(with: request, completion: completion)
   }
 }

@@ -9,6 +9,7 @@ import Foundation
 
 public enum RGMagpieError: Error {
   case unknownError
+  case notModifiedError
   case badRequestError
   case unAuthorizedError
   case notFoundError

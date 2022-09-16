@@ -15,7 +15,6 @@ extension RGMagpie where Base: UIImageView {
     set { objc_setAssociatedObject(base, &imageTaskKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
   }
 
-  @available(iOS, deprecated, message: "RGMagpie 0.5.0에서 Deprecated될 예정입니다.")
   @discardableResult
   public func setImage(
     with urlString: String,
@@ -40,11 +39,12 @@ extension RGMagpie where Base: UIImageView {
       return nil
     }
 
-    let task = ImageDownloader.default.download(with: url) { result in
+    let task = ImageDownloader.default.downloadImage(with: url) { result in
       switch result {
-      case .success(let data):
-        if let image = UIImage(data: data) {
-          ImageCache.default.store(data, forKey: url)
+      case .success(let item):
+        if let image = UIImage(data: item.imageData) {
+          ImageCache.default.store(item.imageData, forKey: url)
+
           DispatchQueue.main.async { [weak view = base as UIImageView] in
             view?.image = image
             completion?(.success(image))

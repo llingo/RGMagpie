@@ -13,6 +13,7 @@
 		71DBB7907C514756FEEB47A434AE8848 /* RGMagpie-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 431DE6513228F90B566955CD30D446D4 /* RGMagpie-dummy.m */; };
 		9C54975F25397CC0EA37A5B136DA3C84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		AF2FEC06E7EA4BEBFDB8067CB1CE3AEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		B02D5BF728D4DC7400DEDF61 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02D5BF628D4DC7400DEDF61 /* ImageItem.swift */; };
 		B05CBFE828D0F11500200CF8 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CBFE428D0F11500200CF8 /* ImageCache.swift */; };
 		B05CBFE928D0F11500200CF8 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CBFE528D0F11500200CF8 /* MemoryStorage.swift */; };
 		B05CBFEA28D0F11500200CF8 /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05CBFE628D0F11500200CF8 /* DiskStorage.swift */; };
@@ -64,6 +65,7 @@
 		878D201690C0A65AAA743E849ADF5C1E /* Pods-RGMagpie_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-RGMagpie_Tests.modulemap"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AAA0A2817BC2142CCA53272F15CAF7A7 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B02D5BF628D4DC7400DEDF61 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
 		B05CBFE428D0F11500200CF8 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		B05CBFE528D0F11500200CF8 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		B05CBFE628D0F11500200CF8 /* DiskStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiskStorage.swift; sourceTree = "<group>"; };
@@ -187,9 +189,10 @@
 		B05CBFE328D0F11500200CF8 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				B05CBFE428D0F11500200CF8 /* ImageCache.swift */,
-				B05CBFE528D0F11500200CF8 /* MemoryStorage.swift */,
 				B05CBFE628D0F11500200CF8 /* DiskStorage.swift */,
+				B05CBFE428D0F11500200CF8 /* ImageCache.swift */,
+				B02D5BF628D4DC7400DEDF61 /* ImageItem.swift */,
+				B05CBFE528D0F11500200CF8 /* MemoryStorage.swift */,
 				B05CBFE728D0F11500200CF8 /* Storagable.swift */,
 			);
 			name = Cache;
@@ -445,6 +448,7 @@
 				B05CBFEB28D0F11500200CF8 /* Storagable.swift in Sources */,
 				B05CBFE928D0F11500200CF8 /* MemoryStorage.swift in Sources */,
 				B05CBFEA28D0F11500200CF8 /* DiskStorage.swift in Sources */,
+				B02D5BF728D4DC7400DEDF61 /* ImageItem.swift in Sources */,
 				B05CBFE828D0F11500200CF8 /* ImageCache.swift in Sources */,
 				B05CBFF228D0F21700200CF8 /* ImageDownloadTask.swift in Sources */,
 				B05CBFF328D0F21700200CF8 /* ImageDownloader.swift in Sources */,

@@ -21,9 +21,9 @@ final class ImageCache {
     self.diskStorage = diskStorage
   }
 
-  convenience init(name: String, memoryPolicy: String? = nil, diskPolicy: String? = nil) {
-    let memoryStorage = MemoryStorage(name: name, policy: .init())
-    let diskStorage = DiskStorage(name: "\(name)Image", policy: .init())
+  convenience init(name: String) {
+    let memoryStorage = MemoryStorage(name: "\(name.capitalized)ImageCache", policy: .init())
+    let diskStorage = DiskStorage(name: "\(name.capitalized)ImageCache", policy: .init())
     self.init(memoryStorage: memoryStorage, diskStorage: diskStorage)
   }
 

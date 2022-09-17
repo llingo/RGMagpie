@@ -13,9 +13,11 @@ struct DiskCachePolicy {
 
 final class DiskStorage: Storagable {
   private let storage = FileManager.default
+  private let lock = NSLock()
 
-  private var maximumDiskSizeLimit: Int
-  private var currentDiskSize: Int = .zero
+  /// if maximumDiskSizeLimit is zero, no limit
+  private(set) var maximumDiskSizeLimit: Int
+  private(set) var currentDiskSize: Int = .zero
 
   let name: String
 
@@ -25,12 +27,17 @@ final class DiskStorage: Storagable {
   }
 
   func setObject(_ object: Data, forKey imageURL: URL) {
-    guard currentDiskSize + object.count <= maximumDiskSizeLimit else { return }
+    lock.lock()
+    defer {
+      calculateTotalFileSize()
+      lock.unlock()
+    }
+
+    guard maximumDiskSizeLimit == .zero || currentDiskSize + object.count <= maximumDiskSizeLimit else { return }
     guard let imagePath = generateImagePath(with: imageURL) else { return }
 
     do {
       try object.write(to: imagePath)
-      currentDiskSize += object.count
 
     } catch {
       debugPrint(error.localizedDescription)
@@ -50,19 +57,19 @@ final class DiskStorage: Storagable {
   }
 
   func removeObject(forKey imageURL: URL) {
+    lock.lock()
+    defer {
+      calculateTotalFileSize()
+      lock.unlock()
+    }
+
     guard let imagePath = generateImagePath(with: imageURL) else { return }
 
     do {
-      let fileAttributes = try storage.attributesOfItem(atPath: imagePath.path)
-
-      if let fileSize = fileAttributes[.size] as? Int {
-        try storage.removeItem(at: imagePath)
-        currentDiskSize += fileSize
-      }
+      try storage.removeItem(at: imagePath)
 
     } catch {
       debugPrint(error.localizedDescription)
-      return
     }
   }
 
@@ -77,5 +84,27 @@ final class DiskStorage: Storagable {
       try? storage.createDirectory(at: directoryPath, withIntermediateDirectories: false)
     }
     return imagePath
+  }
+
+  private func calculateTotalFileSize() {
+    guard let cacheDirectoryURL = storage.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
+    let diskCacheDirectoryURL = cacheDirectoryURL.appendingPathComponent(name)
+
+    if storage.fileExists(atPath: diskCacheDirectoryURL.path) == false {
+      currentDiskSize = .zero
+      return
+    }
+
+    var totalFileSize: Int = .zero
+
+    let fileNames = try? storage.contentsOfDirectory(atPath: diskCacheDirectoryURL.path)
+    fileNames?.forEach { fileName in
+      let filePath = diskCacheDirectoryURL.path.appending("/\(fileName)")
+      let fileAttributes = try? storage.attributesOfItem(atPath: filePath)
+      let fileSize = fileAttributes?[.size] as? Int ?? .zero
+      totalFileSize += fileSize
+    }
+
+    currentDiskSize = totalFileSize
   }
 }

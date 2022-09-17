@@ -211,8 +211,8 @@
 		B05CBFEF28D0F21700200CF8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B05CBFF028D0F21700200CF8 /* ImageDownloadTask.swift */,
 				B05CBFF128D0F21700200CF8 /* ImageDownloader.swift */,
+				B05CBFF028D0F21700200CF8 /* ImageDownloadTask.swift */,
 			);
 			name = Network;
 			path = RGMagpie/Classes/Network;

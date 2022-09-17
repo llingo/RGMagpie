@@ -25,7 +25,7 @@ final class DiskStorage: Storagable {
   }
 
   func setObject(_ object: Data, forKey imageURL: URL) {
-    guard currentDiskSize + object.count >= maximumDiskSizeLimit else { return }
+    guard currentDiskSize + object.count <= maximumDiskSizeLimit else { return }
     guard let imagePath = generateImagePath(with: imageURL) else { return }
 
     do {

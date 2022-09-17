@@ -18,7 +18,7 @@ extension RGMagpie where Base: UIImageView {
   @discardableResult
   public func setImage(
     with urlString: String,
-    placeholder: UIImage? = UIImage(),
+    placeholder: UIImage? = nil,
     completion: ((Result<UIImage, RGMagpieError>) -> Void)? = nil
   ) -> ImageDownloadTask? {
     var mutatingSelf = self
@@ -46,80 +46,47 @@ extension RGMagpie where Base: UIImageView {
     }
 
     /*
-     1. ETag 확인
-     - 1-1. 304 Not-Modified라면 Cache 로직 시작
-     - 1-2. 200 OK로 새로운 ETag을 받으면 Memory, Disk 캐시에 저장
+     # ETag 확인
+     - 304 Not-Modified라면 Cache 로직 시작
+     - 200 OK로 새로운 ETag을 받으면 Memory, Disk 캐시에 저장
 
      setImage(with:placeholder:completion:)
-        |---304 Not-Modified---> Check memory / disk cache -> API Request
-        |
-        |---200 OK ETag: abc---> Save to memory / disk cache
+        1) 304 Not-Modified ---> Check memory / disk cache -> if image == nil, API Request
+        2) 200 OK: New ETag ---> Save to memory / disk cache
     */
 
-    let etag = UserDefaults.standard.string(forKey: url.path)
+    let etag = UserDefaults.standard.string(forKey: "RGMagpie-Etag-\(url.path)")
 
     return ImageDownloader.default.downloadImage(with: url, etag: etag) { result in
       switch result {
       case .success(let item):
         if let image = UIImage(data: item.imageData) {
-          UserDefaults.standard.set(item.etag, forKey: url.path)
+          UserDefaults.standard.set(item.etag, forKey: "RGMagpie-Etag-\(url.path)")
           ImageCache.default.store(item.imageData, forKey: url)
 
-          DispatchQueue.main.async { [weak view = base as UIImageView] in
-            view?.image = image
-            completion?(.success(image))
-          }
-          return
+          loadImageOnMainScheduler(image: image)
+          completion?(.success(image))
+
+        } else {
+          loadImageOnMainScheduler(image: placeholder ?? UIImage())
+          completion?(.failure(.invalidateImageError))
         }
-        completion?(.failure(.invalidateImageError))
 
       case .failure(let error):
-        if case .notModifiedError = error {
-          if let cachedImageData = ImageCache.default.retrieve(forKey: url) {
-            DispatchQueue.main.async { [weak view = base as UIImageView] in
-              view?.image = UIImage(data: cachedImageData)
-            }
-          }
-          completion?(.failure(error))
-          return
+        if case .notModifiedError = error, let cachedData = ImageCache.default.retrieve(forKey: url) {
+          loadImageOnMainScheduler(image: UIImage(data: cachedData))
+
+        } else {
+          loadImageOnMainScheduler(image: placeholder ?? UIImage())
         }
         completion?(.failure(error))
       }
-
-      DispatchQueue.main.async { [weak view = base as UIImageView] in
-        view?.image = placeholder
-      }
     }
+  }
 
-    // MARK: - Legacy
-    /*
-    if let cachedImageData = ImageCache.default.retrieve(forKey: url) {
-      base.image = UIImage(data: cachedImageData)
-      return nil
+  private func loadImageOnMainScheduler(image: UIImage?) {
+    DispatchQueue.main.async { [weak view = base as UIImageView] in
+      view?.image = image
     }
-
-    return ImageDownloader.default.downloadImage(with: url) { result in
-      switch result {
-      case .success(let item):
-        if let image = UIImage(data: item.imageData) {
-          ImageCache.default.store(item.imageData, forKey: url)
-
-          DispatchQueue.main.async { [weak view = base as UIImageView] in
-            view?.image = image
-            completion?(.success(image))
-          }
-          return
-        }
-        completion?(.failure(.invalidateImageError))
-
-      case .failure(let error):
-        completion?(.failure(error))
-      }
-
-      DispatchQueue.main.async { [weak view = base as UIImageView] in
-        view?.image = placeholder
-      }
-    }
-   */
   }
 }

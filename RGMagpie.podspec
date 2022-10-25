@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RGMagpie'
-  s.version          = '0.5.0'
+  s.version          = '0.5.1'
   s.summary          = 'RGMagpie is an asynchronous image processing library.'
   s.description      = <<-DESC
 RGMagpie is a simple tool for processing asynchronous image
